@@ -60,30 +60,46 @@
 <script>
 
   /**
-   * when you press a key on the keyboard
-   * play the song that corresponds to the pressed key
-   */
-  window.addEventListener('keydown', function(e){
+   * Improvements after watching Webos tutorial :
+   *   - Use es6
+   *   - Use of the event transitionend
+   *       to delete the 'playing' class
+   *       from the div related to the pressed button
 
-    var keycode = e.keyCode;
-    var sound = document.querySelector('audio[data-key="' + keycode + '"]');
-    if(sound){
-      play(sound);
-
-      // Select the HTML element that corresponds to the pressed key
-      // Add  to a particular class
-      var key = document.querySelector('.key[data-key="' + keycode + '"]');
-      key.classList.add('playing');
-    }
-  });
+  */
+ 
+  const keys = document.querySelectorAll('.key');
 
   /**
    * When pressed key is released
    * Delete the class that notified the pressed key
    */
-  window.addEventListener('keyup', function(){
-    var playing = document.querySelector('.playing');
-    if(playing) { playing.classList.remove('playing'); }
+  keys.forEach((key) => {
+    key.addEventListener('transitionend', (e) => {
+      if(e.propertyName === 'transform') {
+        key.classList.remove('playing');
+        return true;
+      }
+    });
+  });
+
+  /**
+   * when you press a key on the keyboard
+   * play the song that corresponds to the pressed key
+   */
+  window.addEventListener('keydown', (e) => {
+
+    let keycode = e.keyCode;
+    let sound = document.querySelector(`audio[data-key="${keycode}"]`);
+
+    if(sound){
+      play(sound);
+
+      // Select the HTML element that corresponds to the pressed key
+      // Add  to a particular class
+      let key = document.querySelector(`.key[data-key="${keycode}"]`);
+      key.classList.add('playing');
+    }
   });
 
   /**
