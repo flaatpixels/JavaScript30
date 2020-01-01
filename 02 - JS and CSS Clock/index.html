@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+    html {
+      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      transform-origin: right;
+    }
+
+  </style>
+
+  <script>
+    
+    /**
+     * Seconds bar
+     * @type {HTMLElement}
+     */
+    let secondsHand = document.querySelector('.second-hand');
+
+    /**
+     * Minutes bar
+     * @type {HTMLElement}
+     */
+    let minutesHand = document.querySelector('.min-hand');
+
+    /**
+     * Hours bar
+     * @type {HTMLElement}
+     */
+    let hoursHand = document.querySelector('.hour-hand');
+
+
+    function setDate(){
+      let now = new Date();
+
+      let secondsDegrees = ((now.getSeconds() * 360) / 60) + 90;
+      secondsHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+      let minnutesDegrees = ((now.getMinutes() * 360) / 60) + 90;
+      minutesHand.style.transform = `rotate(${minnutesDegrees}deg)`;
+
+      let hoursDegrees = ((now.getHours() * 360) / 12) + 90;
+      hoursHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    }
+
+    setInterval(setDate, 1000);
+
+    // Note
+    // The + 90 is to set the initial rotate to 90 deg;
+    // When getSeconds / getMinutes / getHours equals to 0
+    // Because they count 0 to 59 for seconds / minutes / 0 to 11
+
+  </script>
+</body>
+</html>
