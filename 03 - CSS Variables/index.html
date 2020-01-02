@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+  
+
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+  <style>
+
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+    
+    /* Don't need container for the image */
+    img {
+      padding: var(--spacing);
+      background-color: var(--base);
+      filter: blur(var(--blur));
+    }
+
+
+  </style>
+
+  <script>
+    
+    /**
+     * All inputs to change the picture variables values
+     * @type {HTMLElement}
+     */
+    let inputs = document.querySelectorAll('input');
+
+    /**
+     * The picutre to update by the inputs values
+     * @type {HTMLElement}
+     */
+    let img  = document.querySelector('img');
+
+    // Wait when the image is loaded
+    // And then make stuff happen
+    img.addEventListener('load', function(){
+      inputs.forEach((input) => {
+
+        // Load picture with the default values
+        updateImage(input);
+
+        // Update picture when values change
+        input.addEventListener('change', function() {
+          updateImage(this);
+        });
+
+      });
+    })
+
+    /**
+     * Update the picture
+     * @param  {HTMLelement} input input that updates the picture
+     * @return {boolean}
+     */
+    function updateImage(input){
+      let sizing = input.dataset.sizing;
+      let value = sizing ? input.value + sizing : input.value;
+      let inputName = input.getAttribute('name');
+      img.style.setProperty(`--${inputName}`, value);
+
+      return true;
+    }
+
+  </script>
+
+</body>
+</html>
