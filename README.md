@@ -16,8 +16,16 @@ It takes me a bit of time to found the way i can grab the keyboard pressed key w
 - transitionend Event : Understand case of use of the transitionend event
 - es6 : Push me to learn more about es6
 
-### Day 2 - 30 Dec 2019
+### Day 2 - 31 Dec 2019
 ### Toughts
 i just coudn't make it works myself. So i watched @wesbos solution before getting into my code.
 #### What i've learned :
 - Methods **getSeconds()** and **getMinutes()** count to 59 and not to 60. **getHours()** counts to 11 and not to 12.
+
+### Day 3 - 1 Jan 2020
+### Toughts
+It was a bit hard to implements the solution i've found. That pushes me to make some researches, and after all, i made it. Because of that, i've learned many things about **css variables** and how to work with them in JavaScript.
+
+After watching @wesbos solution, i improved my code a bit, in order to make the result more fluid. before getting into my code.
+#### What i've learned :
+- **css variables** : How to use and play with them in **JavaScript**
