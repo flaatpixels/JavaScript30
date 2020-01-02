@@ -53,6 +53,8 @@
       filter: blur(var(--blur));
     }
 
+    .hl { color: var(--base); }
+
 
   </style>
 
@@ -64,38 +66,27 @@
      */
     let inputs = document.querySelectorAll('input');
 
-    /**
-     * The picutre to update by the inputs values
-     * @type {HTMLElement}
-     */
-    let img  = document.querySelector('img');
+    inputs.forEach((input) => {
 
-    // Wait when the image is loaded
-    // And then make stuff happen
-    img.addEventListener('load', function(){
-      inputs.forEach((input) => {
+      // Load with the default values
+      updateUI(input);
 
-        // Load picture with the default values
-        updateImage(input);
+      // Update picture when values change
+      input.addEventListener('change', () => updateUI(input));
+      input.addEventListener('mousemove', () => updateUI(input));
 
-        // Update picture when values change
-        input.addEventListener('change', function() {
-          updateImage(this);
-        });
-
-      });
-    })
+    });
 
     /**
      * Update the picture
      * @param  {HTMLelement} input input that updates the picture
      * @return {boolean}
      */
-    function updateImage(input){
+    function updateUI(input){
       let sizing = input.dataset.sizing;
       let value = sizing ? input.value + sizing : input.value;
       let inputName = input.getAttribute('name');
-      img.style.setProperty(`--${inputName}`, value);
+      document.documentElement.style.setProperty(`--${inputName}`, value);
 
       return true;
     }
