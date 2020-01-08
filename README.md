@@ -29,3 +29,13 @@ It was a bit hard to implements the solution i've found. That pushes me to make 
 After watching @wesbos solution, i improved my code a bit, in order to make the result more fluid. before getting into my code.
 #### What i've learned :
 - **css variables** : How to use and play with them in **JavaScript**
+
+### Day 4 - 7 Jan 2020
+### Toughts
+I did most of the solutions myself. But, it was a bit hard to find the sorted array scripts myself. After watching @wesbos solution, i found it was way far easier that what i thought.
+
+#### What i've learned :
+- **filter** : How to use **filter** function
+- **map** : How to use **map** function to alternate arrays
+- **reduce** : How to use **reduce** function in order to reduce array into a single value
+- **sort** : How to use **sort** fonction in order to sort array values
