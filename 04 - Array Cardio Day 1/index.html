@@ -36,41 +36,22 @@
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    const inventorsName = inventors.map(inventor => ({
-        first: inventor.first,
-        last: inventor.last
-      })
-    );
+    const inventorsName = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
     console.log('Inventors first and last names:', inventorsName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    console.log(
-      inventors.sort((a, b) => {
-        // I can't find the right algorithm to make the tri :(
-        if(a.year > b.year){
-          return a;
-        } else {
-          return b;
-        }
-      })
-    );
+    const inventorsSortedByBirthday = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+    console.log('Inventors by birthday', inventorsSortedByBirthday);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
-    let first = undefined;
-    const inventorsTotalYear = inventors.reduce((accumulator, inventor) => {
-      let livingYear = inventor.passed - inventor.year;
-      if(first === undefined){
-        first = accumulator.passed - accumulator.year;
-      }
-      return livingYear + first;
-    });
+    const inventorsTotalYear = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
     console.log(`Inventors total year: ${inventorsTotalYear}`);
 
     // 5. Sort the inventors by years lived
-    // I don;t know how to make the script of the sort function
-    // 
+    const inventorsSortedByTotalYearsOfLiving = inventors.sort((a, b) => a.passed - a.year > b.passed - b.year ? 1 : -1);
+    console.log('Inventors by Years of Living', inventorsSortedByTotalYearsOfLiving);
     
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -82,14 +63,26 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    // Don't really know how to make the search script
+    const peopleSortedByLastName = people.map(people => {
+      const [firstName, lastName] = people.split(", ");
+      return {firstName, lastName}
+    })
+    .sort((a, b) => a.lastName > b.lastName ? 1 : -1);
+    console.log('People sorted by lastname', peopleSortedByLastName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
-    //Don;t knwo how to do that
+    const datasCount = data.reduce((obj, d) => {
+      if(!obj[d]) {
+        obj[d] = 0;
+      }
 
+      obj[d]++;
+      return obj;
+    }, {});
+    console.log('Datas count: ', datasCount);
   </script>
 </body>
 </html>
