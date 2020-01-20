@@ -40,10 +40,9 @@
       /* Item take the max space avalaible */
       flex: 1;
 
-
       display: flex;
-      flex-align: center;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       flex-direction: column;
 
       /* Safari transitionend event.propertyName === flex */
@@ -68,14 +67,17 @@
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      padding: 50px 0;
+      flex: 1 0 auto;
+
     }
 
     .panel > *:first-child { transform: translateY(-100%); }
-
     .panel > *:last-child { transform: translateY(100%); }
-
 
     .panel p {
       text-transform: uppercase;
@@ -93,9 +95,8 @@
       flex: 5;
     }
 
-
-    .panel.open > *:first-child { transform: translateY(0); }
-    .panel.open > *:last-child { transform: translateY(0); }
+    .panel.open-active > *:first-child { transform: translateY(0); }
+    .panel.open-active > *:last-child { transform: translateY(0); }
 
   </style>
 
@@ -137,8 +138,11 @@
     let panels = document.querySelectorAll('.panel');
 
     panels.forEach(el => {
-      el.addEventListener('click', function(e){
-        togglePanel(this);
+      el.addEventListener('click', function(e){ togglePanel(this, 'open'); });
+      el.addEventListener('transitionend', function(e){
+        if(e.propertyName.includes("flex")){
+          togglePanel(this, 'open-active');
+        }
       });
     });
 
@@ -147,13 +151,7 @@
      * @param  {HTMLElement} el The element to toggle
      * @return {}
      */
-    function togglePanel(el){
-      if(el.classList.contains('open')){
-        el.classList.remove('open');
-      } else {
-        el.classList.add('open');
-      }
-    }
+    function togglePanel(el, className){ el.classList.toggle(className) }
   </script>
 
 
