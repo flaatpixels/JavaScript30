@@ -30,12 +30,6 @@ let queryInput = document.querySelector('.search');
 let suggestions = document.querySelector('.suggestions');
 
 /**
- * The initail content of results
- * @type {String}
- */
-let citiesInitial = suggestions.innerHTML;
-
-/**
  * Cities list
  * @type {Array}
  */
@@ -43,7 +37,9 @@ let cities = [];
 
 fetch(endpoint).then((response) => response.json()).then(datas => cities = datas);
 
-queryInput.addEventListener('keyup', function(e){ updateUi(searchCity(this.value)); });
+queryInput.addEventListener('keyup', function(e){
+  suggestions.innerHTML = searchCity(this.value).join('');
+});
 
 /**
  * Find the cities related to the search key
@@ -52,13 +48,15 @@ queryInput.addEventListener('keyup', function(e){ updateUi(searchCity(this.value
  */
 function searchCity(q){
 
+  let regex = new RegExp(q, 'gi');
+  
   return cities
-              .filter(city => city.city.indexOf(q) > 0)
-              .map(city => {
+              .filter(place => regex.test(place.city) || regex.test(place.state))
+              .map(place => {
                 return `
                   <li>
-                    <span class="name">${parseName(city.city, q)}, ${city.state}</span>
-                    <span class="population">${parsePopulation(city.population)}</span>
+                    <span class="name">${parseName(place.city, q)}, ${place.state}</span>
+                    <span class="population">${parsePopulation(place.population)}</span>
                   </li>
                 `
                 });
@@ -86,19 +84,6 @@ function parseName(name, q){
 function parsePopulation(n){
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-
-/**
- * Update the result UI
- * @param  {Array} cities The cities list
- * @return {Void}
- */
-function updateUi(cities){
-  suggestions.innerHTML = '';
-  cities.forEach(city => suggestions.innerHTML += city)
-}
-
-
-
 
 </script>
 </body>
