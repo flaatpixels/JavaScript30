@@ -39,3 +39,19 @@ I did most of the solutions myself. But, it was a bit hard to find the sorted ar
 - **map** : How to use **map** function to alternate arrays
 - **reduce** : How to use **reduce** function in order to reduce array into a single value
 - **sort** : How to use **sort** fonction in order to sort array values
+
+### Day 5 - 20 Jan 2020 : Flex Panel Gallery
+### Toughts
+It's been a logn i paused the Javascript30 Challege. I did that because i wanted to finish the FreeCodeCamp Javascript and Data structure Certification. Upon to this challenge, i did most of the solutions myself. But, after watching @wesbos solution, i found some improvement to do into my code
+
+#### What i've learned :
+- How to add or delete a class name from a element by using the **toggle** method on a Node Element.
+
+### Day 6 - 21 Jan 2020 : Type ahead | Array cardio Day 2
+### Toughts
+I was searching a little challenge to put in practice the fetch Api that i've learned a couple of months ago. The type Ahead challenge fit this need. I was so proud to make this work myself.
+
+Upon to the Array Cardio Day 2, this was so easy to get done.
+
+#### What i've learned :
+- How to use the **findIndex** method to get the index of a specific array element.
