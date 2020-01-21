@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+/**
+ * The query input
+ * @type {HTMLElement}
+ */
+let queryInput = document.querySelector('.search');
+
+/**
+ * Wrapper for search results
+ * @type {HTMLElement}
+ */
+let suggestions = document.querySelector('.suggestions');
+
+/**
+ * The initail content of results
+ * @type {String}
+ */
+let citiesInitial = suggestions.innerHTML;
+
+/**
+ * Cities list
+ * @type {Array}
+ */
+let cities = [];
+
+fetch(endpoint).then((response) => response.json()).then(datas => cities = datas);
+
+queryInput.addEventListener('keyup', function(e){ updateUi(searchCity(this.value)); });
+
+/**
+ * Find the cities related to the search key
+ * @param  {String} q The query seach
+ * @return {Array}   List of cities found
+ */
+function searchCity(q){
+
+  return cities
+              .filter(city => city.city.indexOf(q) > 0)
+              .map(city => {
+                return `
+                  <li>
+                    <span class="name">${parseName(city.city, q)}, ${city.state}</span>
+                    <span class="population">${parsePopulation(city.population)}</span>
+                  </li>
+                `
+                });
+
+}
+
+/**
+ * Parse the name of cities found
+ * @param  {String} name City's name
+ * @param  {String} q    The query string
+ * @return {String}      The parsed string
+ */
+function parseName(name, q){
+  let regex = new RegExp(q, "gi");
+  return name.replace(regex, function(m) {
+      return `<span class="hl">${m}</span>`;
+  });
+}
+
+/**
+ * Parse the population stat
+ * @param  {String|Number} n Population stat
+ * @return {String}   The population parsed with comma
+ */
+function parsePopulation(n){
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/**
+ * Update the result UI
+ * @param  {Array} cities The cities list
+ * @return {Void}
+ */
+function updateUi(cities){
+  suggestions.innerHTML = '';
+  cities.forEach(city => suggestions.innerHTML += city)
+}
+
+
+
+
+</script>
+</body>
+</html>
