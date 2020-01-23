@@ -55,3 +55,13 @@ Upon to the Array Cardio Day 2, this was so easy to get done.
 
 #### What i've learned :
 - How to use the **findIndex** method to get the index of a specific array element.
+
+### Day 7 - 23 Jan 2020 : Fun With Canvas | Dev Tools Domination
+### Toughts
+I known that canvas existed. But i've never get into it. Before doing the challenge, i've watched the @wesbos solution first. After that, i go learning a bit more about canvas. And after all, i tried to the challenge with my own solution.
+
+Upon to the console challenge, i've learn many ways how i can use the console.
+
+#### What i've learned :
+- How to use the **canvas Api**
+- Different ways to use **console**
