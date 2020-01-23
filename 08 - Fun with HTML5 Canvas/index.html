@@ -26,14 +26,26 @@
    */
   let isDraw = false;
 
+  /**
+   * If size of line should grow or not
+   * @type {Boolean}
+   */
+  let scaleWidthUp = true;
+
+  /**
+   * Color of the line
+   * @type {Number}
+   */
+  let hue = 0;
+
   // Make canva take the whole size of the screen
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
   // Style of lines
-  ctx.lineWidth = 10;
+  ctx.lineWidth = 100;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = 'red';
+  ctx.lineJoin = 'round'
 
   /**
    * Toggle the drawing mode
@@ -51,8 +63,7 @@
    * @return {boolean}
    */
   function beginTrait(posX, posY){
-    ctx.beginPath();
-    ctx.moveTo(posX, posY);
+
     return true;
   }
 
@@ -63,19 +74,37 @@
    * @return
    */
   function buildTrait(posX, posY){
+
     if(isDraw){
+
+      ctx.beginPath();
+      ctx.moveTo(posX, posY);
       ctx.lineTo(posX, posY);
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
       ctx.stroke();
+
+      if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+        scaleWidthUp = !scaleWidthUp;
+      }
+
+      if(scaleWidthUp){
+        ctx.lineWidth++;
+      } else {
+        ctx.lineWidth--;
+      }
+
+      hue++;
+      if(hue >= 360){
+        hue = 0;
+      }
+
       return true;
     }
     return false;
   }
 
   // Start the trait
-  window.addEventListener('mousedown', (e) => {
-    toggleDrawingMode();
-    beginTrait(e.offsetX, e.offsetY);
-  });
+  window.addEventListener('mousedown', () => toggleDrawingMode() );
 
   // Strop the trait
   window.addEventListener('mouseup', () => toggleDrawingMode() );
@@ -83,7 +112,7 @@
   // Build the trait
   window.addEventListener('mousemove', function(e){
     buildTrait(e.offsetX, e.offsetY);
-  })
+  });
 </script>
 
 <style>
