@@ -103,20 +103,38 @@
    */
   let checkBoxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
 
+  /**
+   * The last checked input (In the array of checkBoxes)
+   * @type {Number}
+   */
+  let lastChecked = 0;
+
   checkBoxes.forEach(input => {
-    input.addEventListener('click', function(e){
-      if(e.shiftKey){
-        let end = checkBoxes.indexOf(this);
-        checkGroups(0, end);
-      }
-    })
+    input.addEventListener('click', handleCheck);
   });
 
-  function checkGroups(start, end){
-    for(let i = start; i < end; i++){
-      checkBoxes[i].checked = true;
+  function handleCheck(event){
+    if(event.shiftKey){
+      let currentCheckedBoxIndex = checkBoxes.indexOf(this);
+
+      if(currentCheckedBoxIndex > lastCheckedBoxIndex){
+        [
+          currentCheckedBoxIndex,
+          lastCheckedBoxIndex
+        ] = [
+          lastCheckedBoxIndex,
+          currentCheckedBoxIndex
+        ];
+      }
+
+      for(let i = currentCheckedBoxIndex; i < lastCheckedBoxIndex; i++){
+        checkBoxes[i].checked = true;
+      }
+      return;
     }
+    lastCheckedBoxIndex = checkBoxes.indexOf(this);
   }
+
 </script>
 </body>
 </html>
