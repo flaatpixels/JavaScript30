@@ -49,10 +49,15 @@ video.addEventListener('loadeddata', function(){
 
   // Play with the progress bar
   // to change the video playing part
+  let enableProgress = false;
   progressBarContainer.addEventListener('click', handleProgressClick);
+  progressBarContainer.addEventListener('mousemove', handleProgressClick);
+  progressBarContainer.addEventListener('mousedown', () => enableProgress = true);
+  progressBarContainer.addEventListener('mouseup', () => enableProgress = false);
 
   // Play or pause the video
   playBtn.addEventListener('click', handleVideoPlay);
+  video.addEventListener('click', handleVideoPlay);
 
   // Control the skip part of the video
   skipBtns.forEach(skipBtn => {
@@ -71,12 +76,14 @@ video.addEventListener('loadeddata', function(){
    * @return {Undefined}
    */
   function handleProgressClick(e){
-    let offsetX = e.offsetX;
-    let percentage = Math.floor((offsetX * 100) / progressBarContainer.offsetWidth);
-    progressFilled.style.flexBasis = percentage + '%';
+    if(e.type == 'click' || enableProgress){
+      let offsetX = e.offsetX;
+      let percentage = Math.floor((offsetX * 100) / progressBarContainer.offsetWidth);
+      progressFilled.style.flexBasis = percentage + '%';
 
-    let currentTime = (videoDuration * percentage) / 100;
-    video.currentTime = currentTime
+      let currentTime = (videoDuration * percentage) / 100;
+      video.currentTime = currentTime;
+    }
   }
 
   /**
