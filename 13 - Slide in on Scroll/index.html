@@ -80,9 +80,15 @@
      */
     function slideImg(){
       images.forEach(image => {
+        let slideInAt = (window.scrollY + viewportHeight) - image.height / 2;
+        let imageBottom = image.offsetTop + image.height;
+        let isHalfShown = slideInAt > image.offsetTop;
+        let scrollPassed = window.scrollY > imageBottom;
         let boundings = image.getBoundingClientRect();
-        if(boundings.top > 0 && boundings.bottom < viewportHeight){
+        if(isHalfShown && !scrollPassed){
           image.classList.add('active');
+        } else {
+          image.classList.remove('active');
         }
       })
     }
