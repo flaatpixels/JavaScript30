@@ -65,3 +65,21 @@ Upon to the console challenge, i've learn many ways how i can use the console.
 #### What i've learned :
 - How to use the **canvas Api**
 - Different ways to use **console**
+
+### Day 8 - 27 Jan 2020 : 10 - Hold Shift and Check Checkboxes | Custom Video Player
+### Toughts
+It was hard to find myself how to handle a group selection. So i watched the @wesbos solution and found that it was a lot easier than waht i thought.
+
+Upon to the c**Custom Video Player**, i made it myself. That helps me to remember some of things i've known about the HTMLMedia Api.
+
+#### What i've learned :
+- Remember use of **HMTLMedia Api**
+
+### Day 9 - 28 Jan 2020 : 10 - Key Sequence Detection | Slide in on Scroll | JavaScript References VS Copying | LocalStorage
+### Toughts
+I've learned many things in one day by doing some part of these challenges myself.
+
+#### What i've learned :
+- How to know when an HTML element is in the viewport
+- How to copy deep objects with Javascript Vanilla
+- How to put objects in local storage
