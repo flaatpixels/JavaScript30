@@ -35,19 +35,47 @@
   </style>
 
 <script>
-  
-  let hero = document.querySelector('.hero h1');
+  /**
+   * Container
+   * @type {HTMLElement}
+   */
+  let hero = document.querySelector('.hero');
+
+  /**
+   * Hero text
+   * @type {HTMLElement}
+   */
+  let h1 = hero.querySelector('h1');
+
+  /**
+   * Distance of shadows
+   * @type {Number}
+   */
+  let walk = 500;
 
   window.addEventListener('mousemove', addShadow);
 
+  /**
+   * Add and move shadows
+   * @param {Event} e
+   */
   function addShadow(e){
-    const {offsetX: x, offsetY: y} = e;
+    const {offsetWidth: width, offsetHeight: height} = hero;
+    let {offsetX: x, offsetY: y} = e;
 
-    hero.style.textShadow = `
-                 ${y}px ${x}px 0 rgba(255, 0, 255, 0.7),
-                 ${y}px ${x}px 0 rgba(0, 255, 255, 0.7),
-                 ${y}px ${x}px 0 rgba(0, 255, 0, 0.7),
-                 ${y}px ${x}px 0 rgba(0, 0, 255, 0.7)`;
+    if(this != e.target){
+      x = x + e.target.offsetLeft;
+      y = y + e.target.offsetTop;
+    }
+
+    let xWalk = Math.round(x/width * walk - (walk / 2));
+    let yWalk = Math.round(y/height * walk - (walk / 2));
+
+    h1.style.textShadow = `
+       ${xWalk}px ${yWalk}px 0 rgba(255, 0, 255, 0.7),
+       ${xWalk * -1}px ${yWalk}px 0 rgba(0, 255, 255, 0.7),
+       ${yWalk}px ${xWalk * -1}px 0 rgba(0, 255, 0, 0.7),
+       ${yWalk * -1}px ${xWalk}px 0 rgba(0, 0, 255, 0.7)`;
   }
 </script>
 </body>
