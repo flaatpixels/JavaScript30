@@ -75,7 +75,7 @@ Upon to the c**Custom Video Player**, i made it myself. That helps me to remembe
 #### What i've learned :
 - Remember use of **HMTLMedia Api**
 
-### Day 9 - 28 Jan 2020 : 10 - Key Sequence Detection | Slide in on Scroll | JavaScript References VS Copying | LocalStorage
+### Day 9 - 28 Jan 2020 : Key Sequence Detection | Slide in on Scroll | JavaScript References VS Copying | LocalStorage
 ### Toughts
 I've learned many things in one day by doing some part of these challenges myself.
 
@@ -83,3 +83,23 @@ I've learned many things in one day by doing some part of these challenges mysel
 - How to know when an HTML element is in the viewport
 - How to copy deep objects with Javascript Vanilla
 - How to put objects in local storage
+
+
+### Day 10 - 06 Feb 2020 : Mouse Move Shadow
+### Toughts
+I didn't really learn something new because what needed to do this challenge was some concepts used to make the previous ones. But needed to be a little bit smart to make the shadows move correctly
+
+#### What i've learned :
+- ...
+
+### Day 11 - 07 Feb 2020 : Sort Without Articles
+### Toughts
+All concepts used to make this was seen in the previous challenges. So nothing was new to me
+#### What i've learned :
+- ...
+
+### Day 12 - 10 Feb 2020 : Adding up time with reduce
+### Toughts
+All concepts used to make this was seen in the previous challenges. But i've triggered a bit to convert the seconds into chunk of hours minutes and seconds
+#### What i've learned :
+- Convert seconds into hours minutes and seconds
