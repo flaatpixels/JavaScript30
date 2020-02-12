@@ -103,3 +103,10 @@ All concepts used to make this was seen in the previous challenges. So nothing w
 All concepts used to make this was seen in the previous challenges. But i've triggered a bit to convert the seconds into chunk of hours minutes and seconds
 #### What i've learned :
 - Convert seconds into hours minutes and seconds
+
+### Day 13 - 12 Feb 2020 : Fun with webcam
+### Toughts
+I couldn't do it myself. This challenge was a little bit tricky for me. So i just watched the @wesbos solution and try to get how it works. After all, it was a lot easier than what i thought.
+#### What i've learned :
+- How to manipulate canvas pixels
+- How to convert video into canvas image
